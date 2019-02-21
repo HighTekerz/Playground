@@ -22,8 +22,14 @@ import edu.wpi.first.wpilibj.Timer;
  * set to 0
  * 
  */
-public class PIDFConstantF {
+public class PIDF {
+    enum FType {
+        CONSTANT,
+        SPEED_DEPENDENT,
+        GRAVITY_ARM
+    }
     double p,i,d,f;
+    PIDF.FType fType = FType.CONSTANT;
     double
         iMax = Double.MAX_VALUE,
         error = 0.0, 
@@ -31,30 +37,41 @@ public class PIDFConstantF {
         previousError = 0.0,
         changeInError = 0.0,
         setpoint = 0.0,
-        rampSecondsPer = 1.0,
+        motorStopValue = 0.0,
+        motorMaxValue = 1.0,
+        rampRateMax = 0.0,
         output = 0.0,
         lastOutput = 0.0,
-        changeInOutput = 0.0,
+        changeInOutputRate = 0.0,
         elapsedTime = 0.0,
         timeNow = 0.0,
         timeLast = 0.0,
-        pPart = 0.0,
-        iPart = 0.0,
-        dPart = 0.0,
         fPart = 0.0;
-
 
     Timer timer = new Timer();
     
-    public PIDFConstantF(double p, double i, double d, double f) {
-        this.setPIDF(p, i, d, f);
+    public PIDF(double p, double i, double d) {
+        this.setPIDF(p, i, d);
     }
 
-    public void setPIDF(double p, double i, double d, double f) {
+    public void setPIDF(double p, double i, double d) {
         this.p = p;
         this.i = i;
         this.d = d;
+    }
+
+    public void setFConstant (double f {
+        this.fType = FType.CONSTANT;
         this.f = f;
+    }
+
+    public void setFGravityArm(double f, double sensorAtTop, double sensorAtBottom, double motorValueAt90) {
+        this.fType = FType.GRAVITY_ARM;
+        this.f = f;
+    }
+
+    public void setRampRateInMS (double motorStopSpeed, double motorFullSpeed, double timeForFullRunInMS) {
+        this.rampRateMax = (motorFullSpeed - motorStopSpeed) / timeForFullRunInMS;
     }
 
     public void setIMax(double iMax) {
@@ -71,7 +88,7 @@ public class PIDFConstantF {
 
     public void start() {
         accumulatedError = 
-            changeInOutput =
+            changeInOutputRate =
             previousError = 
             0.0;
         timer.reset();
@@ -96,15 +113,34 @@ public class PIDFConstantF {
 
         changeInError = (error - previousError) / elapsedTime;
 
+        switch (this.fType) {
+            case SPEED_DEPENDENT:
+                //TODO: make this scale correctly
+                break;
+            case GRAVITY_ARM:
+                break;
+            case CONSTANT:
+                fPart = f;
+            default:
+                break;
+        }
+
         output = 
             p * error +
             i * accumulatedError +
             d * changeInError +
-            f;
+            fPart;
 
-        changeInOutput = (lastOutput - output) / elapsedTime;
+        changeInOutputRate = (output - lastOutput) / elapsedTime;
 
-        return output;        
+        // we need to change output to only increate the amount it is allowed in this length of time
+        // and in the direction of change
+        if (Math.abs(changeInOutputRate) > rampRateMax) {
+            lastOutput +=
+                (rampRateMax * elapsedTime) * // amount of change in this timeframe
+                (changeInOutputRate / changeInOutputRate); // in the correct direction of change
+        }
 
+        return output;
     }
 }

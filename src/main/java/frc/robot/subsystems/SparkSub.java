@@ -13,7 +13,7 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.tekerz.L;
-import frc.tekerz.PIDFConstantF;
+import frc.tekerz.PIDF;
 
 /**
  * Add your docs here.
@@ -32,7 +32,7 @@ public class SparkSub extends Subsystem {
     i = 0.0,
     d = 0.001,
     f = 0.0;
-  PIDFConstantF pid = new PIDFConstantF(p, i, d, f);
+  PIDF pid = new PIDF(p, i, d, f);
 
   public SparkSub() {
     pid.setIMax(.5);
