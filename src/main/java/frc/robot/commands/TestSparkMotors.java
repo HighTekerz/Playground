@@ -15,8 +15,10 @@ import frc.robot.RobotMap;
 import frc.tekerz.L;
 
 public class TestSparkMotors extends Command {
-  CANSparkMax spark = RobotMap.Sparks.testSpark2;
-  public TestSparkMotors() {
+  CANSparkMax spark;
+  CANSparkMax sparkFollow;
+
+  private TestSparkMotors() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.Subsystems.sparkSub);
     requires(Robot.Subsystems.talonSub);
@@ -27,6 +29,11 @@ public class TestSparkMotors extends Command {
     this();
     this.setName(name);
     this.spark = spark;
+  }
+
+  public TestSparkMotors(CANSparkMax lead, CANSparkMax follow, String name) {
+    this(lead, name);
+    this.sparkFollow = follow;
   }
 
   // Called just before this Command runs the first time

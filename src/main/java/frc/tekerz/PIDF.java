@@ -60,7 +60,7 @@ public class PIDF {
         this.d = d;
     }
 
-    public void setFConstant (double f {
+    public void setFConstant (double f) {
         this.fType = FType.CONSTANT;
         this.f = f;
     }

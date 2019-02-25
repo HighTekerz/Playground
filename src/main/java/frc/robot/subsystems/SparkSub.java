@@ -32,11 +32,10 @@ public class SparkSub extends Subsystem {
     i = 0.0,
     d = 0.001,
     f = 0.0;
-  PIDF pid = new PIDF(p, i, d, f);
+  PIDF pid = new PIDF(p, i, d);
 
   public SparkSub() {
     pid.setIMax(.5);
-
   }
 
   @Override

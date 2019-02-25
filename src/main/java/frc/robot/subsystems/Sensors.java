@@ -44,5 +44,6 @@ public class Sensors extends Subsystem {
   public void log() {
     SmartDashboard.putNumber("analog 0", ai0.getAverageVoltage());
     SmartDashboard.putNumber("analog 1", ai1.getAverageVoltage());
+    SmartDashboard.putBoolean("digital 0", RobotMap.Digitals.port0.get());
   }
 }

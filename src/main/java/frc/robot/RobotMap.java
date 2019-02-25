@@ -13,6 +13,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DigitalInput;
 import frc.tekerz.Rioduino;
 
 /**
@@ -43,6 +44,10 @@ public class RobotMap {
 
   public static class RIODuinos {
     public static Rioduino rioduino = new Rioduino();
+  }
+
+  public static class Digitals {
+    public static DigitalInput port0 = new DigitalInput(0);
   }
 
 }
