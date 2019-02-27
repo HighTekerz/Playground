@@ -8,7 +8,6 @@
 package frc.robot.tekerz;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 /**
  * PIDFConstantF is an implementation of a PIDF loop for a steady state F
