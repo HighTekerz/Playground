@@ -14,7 +14,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
-import frc.tekerz.Rioduino;
+import frc.robot.tekerz.Rioduino;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into

@@ -12,7 +12,7 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.tekerz.L;
+import frc.robot.tekerz.L;
 
 public class TestSparkMotors extends Command {
   CANSparkMax spark;

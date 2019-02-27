@@ -7,13 +7,29 @@
 
 package frc.robot.commands;
 
+import java.util.List;
+import java.util.function.Consumer;
+
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
 import frc.robot.tekerz.L;
 
-public class DoNothing extends Command {
-  public DoNothing() {
+public class TestMotors extends Command {
+  Consumer<Double> motorSet;
+
+  private TestMotors() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+  }
+
+  public TestMotors(Consumer<Double> motorSet, String name, List<Subsystem> subs) {
+    this();
+    this.setName(name);
+    this.motorSet = motorSet;
+
+    for (Subsystem sub : subs) {
+      requires(sub);      
+    }
   }
 
   // Called just before this Command runs the first time
@@ -25,6 +41,13 @@ public class DoNothing extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if (Robot.oi.getButtonB()) {
+      motorSet.accept(Robot.oi.getLeftY() / 10.0);
+    } else if (Robot.oi.getButtonY()) {
+      motorSet.accept(Robot.oi.getLeftY());      
+    } else {
+      motorSet.accept(0.0);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,12 +60,18 @@ public class DoNothing extends Command {
   @Override
   protected void end() {
     L.ogCmdEnd(this);
+    this.cleanUp();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    L.ogCmdInterrupted(this);    
+    L.ogCmdInterrupted(this);
+    this.cleanUp();
+  }
+
+  private void cleanUp() {
+    motorSet.accept(0.0);
   }
 }

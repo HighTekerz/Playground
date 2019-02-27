@@ -7,21 +7,25 @@
 
 package frc.robot;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.DoNothing;
+import frc.robot.commands.TestMotors;
 import frc.robot.commands.TestSparkMotors;
 import frc.robot.commands.TestTalonMotors;
-import frc.robot.commands.sparkSub.SparkPID;
+import frc.robot.commands.sparksub.SparkPID;
 import frc.robot.subsystems.Sensors;
 import frc.robot.subsystems.SparkSub;
 import frc.robot.subsystems.TalonEncoderSub;
 import frc.robot.subsystems.TalonSub;
-import frc.tekerz.L;
+import frc.robot.tekerz.L;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -56,6 +60,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", m_chooser);
     System.out.println("Robot Started!");
     this.addTestCommands();
+    SmartDashboard.putData("sched", Scheduler.getInstance());
   }
 
   /**
@@ -161,13 +166,15 @@ public class Robot extends TimedRobot {
   }
 
   private void addTestCommands() {
-    SmartDashboard.putString("Hold B for slow, Y for fast", "Use Left Y axis");
+    List<Subsystem> subs = new ArrayList<Subsystem>();
+    L.ogSD("Hold B for slow, Y for fast", "Use Left Y axis");
     SmartDashboard.putData(new TestTalonMotors(RobotMap.Talons.testTalonEncoder, "testTalonEncoder"));
     SmartDashboard.putData(new TestTalonMotors(RobotMap.Talons.testTalonIMU, "testTalonIMU"));
     SmartDashboard.putData(new TestSparkMotors(RobotMap.Sparks.testSpark, "testSpark"));
     SmartDashboard.putData(new TestSparkMotors(RobotMap.Sparks.testSpark2, "testSpark2"));
     SmartDashboard.putData(new SparkPID(50, "PID 50"));
     SmartDashboard.putData(new SparkPID(0, "PID 0"));
+    L.ogSD("run spark 1", new TestMotors(RobotMap.Sparks.testSpark::set, "spark 1 cmd", subs));
   }
 
   // private void removeTestCommands() {

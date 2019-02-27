@@ -13,7 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.tekerz.L;
+import frc.robot.tekerz.L;
 
 public class TestTalonMotors extends Command {
   TalonSRX talon = RobotMap.Talons.testTalonEncoder;

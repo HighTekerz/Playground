@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.tekerz;
+package frc.robot.tekerz;
 
 import edu.wpi.first.wpilibj.Timer;
 
@@ -72,6 +72,7 @@ public class PIDF {
 
     public void setRampRateInMS (double motorStopSpeed, double motorFullSpeed, double timeForFullRunInMS) {
         this.rampRateMax = (motorFullSpeed - motorStopSpeed) / timeForFullRunInMS;
+        System.out.println("ramp rate is " + this.rampRateMax);
     }
 
     public void setIMax(double iMax) {

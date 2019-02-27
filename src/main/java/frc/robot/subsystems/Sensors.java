@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.tekerz.Rioduino;
+import frc.robot.tekerz.Rioduino;
 
 /**
  * Add your docs here.
@@ -27,7 +27,7 @@ public class Sensors extends Subsystem {
 
 
   public Sensors() {
-    // updater.start();
+    updater.start();
   }
 
   @Override

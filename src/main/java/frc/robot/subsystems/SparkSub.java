@@ -12,8 +12,8 @@ import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.tekerz.L;
-import frc.tekerz.PIDF;
+import frc.robot.tekerz.L;
+import frc.robot.tekerz.PIDF;
 
 /**
  * Add your docs here.
@@ -36,6 +36,7 @@ public class SparkSub extends Subsystem {
 
   public SparkSub() {
     pid.setIMax(.5);
+    pid.setRampRateInMS(0.0, 1.0, 1000000000);
   }
 
   @Override
