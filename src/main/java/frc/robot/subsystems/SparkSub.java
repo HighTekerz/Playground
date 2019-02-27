@@ -22,10 +22,8 @@ public class SparkSub extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  CANSparkMax spark = RobotMap.Sparks.testSpark;
+  CANSparkMax spark = RobotMap.Sparks.testSpark2;
   CANEncoder enc = spark.getEncoder();
-  CANSparkMax spark2 = RobotMap.Sparks.testSpark2;
-  CANEncoder enc2 = spark2.getEncoder();
   
   double 
     p = .01,
@@ -67,6 +65,5 @@ public class SparkSub extends Subsystem {
 
   public void log() {
     L.ogSD("enc1", enc.getPosition());
-    L.ogSD("enc2", enc2.getPosition());
   }
 }

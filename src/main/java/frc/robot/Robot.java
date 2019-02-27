@@ -20,7 +20,7 @@ import frc.robot.commands.DoNothing;
 import frc.robot.commands.TestMotors;
 import frc.robot.commands.TestSparkMotors;
 import frc.robot.commands.TestTalonMotors;
-import frc.robot.commands.sparksub.SparkPID;
+import frc.robot.commands.sparksub.SparkSubPIDCommand;
 import frc.robot.subsystems.Sensors;
 import frc.robot.subsystems.SparkSub;
 import frc.robot.subsystems.TalonEncoderSub;
@@ -172,8 +172,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData(new TestTalonMotors(RobotMap.Talons.testTalonIMU, "testTalonIMU"));
     SmartDashboard.putData(new TestSparkMotors(RobotMap.Sparks.testSpark, "testSpark"));
     SmartDashboard.putData(new TestSparkMotors(RobotMap.Sparks.testSpark2, "testSpark2"));
-    SmartDashboard.putData(new SparkPID(50, "PID 50"));
-    SmartDashboard.putData(new SparkPID(0, "PID 0"));
+    SmartDashboard.putData(new SparkSubPIDCommand(50, "PID 50"));
+    SmartDashboard.putData(new SparkSubPIDCommand(0, "PID 0"));
     L.ogSD("run spark 1", new TestMotors(RobotMap.Sparks.testSpark::set, "spark 1 cmd", subs));
   }
 

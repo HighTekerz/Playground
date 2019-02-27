@@ -11,23 +11,22 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.SparkSub;
 
-public class SparkPID extends Command {
+public class SparkSubPIDCommand extends Command {
   private double setpoint;
   private SparkSub sub = Robot.Subsystems.sparkSub;
 
-
-  private SparkPID() {}
-  public SparkPID(double setpoint) {
+  @SuppressWarnings({"unused"})
+  private SparkSubPIDCommand() {}
+  public SparkSubPIDCommand(double setpoint) {
     // Use requires() here to declare subsystem dependencies
     requires(sub);
     this.setpoint = setpoint;
   }
 
-  public SparkPID(double setpoint, String name) {
+  public SparkSubPIDCommand(double setpoint, String name) {
     this(setpoint);
     this.setName(name);
   }
-  
 
   // Called just before this Command runs the first time
   @Override
