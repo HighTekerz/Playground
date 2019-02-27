@@ -17,6 +17,7 @@ public class SparkSubPIDCommand extends Command {
 
   @SuppressWarnings({"unused"})
   private SparkSubPIDCommand() {}
+
   public SparkSubPIDCommand(double setpoint) {
     // Use requires() here to declare subsystem dependencies
     requires(sub);
