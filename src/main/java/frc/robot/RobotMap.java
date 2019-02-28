@@ -36,6 +36,8 @@ public class RobotMap {
   public static class Analogs {
     public static AnalogInput port0 = new AnalogInput(0);
     public static AnalogInput port1 = new AnalogInput(1);
+    public static AnalogInput port2 = new AnalogInput(2);
+    public static AnalogInput port3 = new AnalogInput(3);
   }
 
   public static class Pigeons {
