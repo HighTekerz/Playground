@@ -15,16 +15,16 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.tekerz.L;
 
-public class TestTalonMotors extends Command {
+public class TestTalonMotorsCurrent extends Command {
   TalonSRX talon = RobotMap.Talons.testTalonEncoder;
-  public TestTalonMotors() {
+  public TestTalonMotorsCurrent() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.Subsystems.sparkSub);
     requires(Robot.Subsystems.talonSub);
     requires(Robot.Subsystems.talonEncoderSub);
   }
 
-  public TestTalonMotors(TalonSRX talon, String name) {
+  public TestTalonMotorsCurrent(TalonSRX talon, String name) {
     this();
     this.setName(name);
     this.talon = talon;
@@ -53,13 +53,7 @@ public class TestTalonMotors extends Command {
     //   lastMotor = currentMotor;
     // }
 
-    if (Robot.oi.getButtonB()) {
-      talon.set(ControlMode.PercentOutput, Robot.oi.getLeftY() / 10.0);
-    } else if (Robot.oi.getButtonY()) {
-      talon.set(ControlMode.PercentOutput, Robot.oi.getLeftY());
-    } else {
-      talon.set(ControlMode.PercentOutput, 0.0);
-    }
+        talon.set(ControlMode.Current, 0.9);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -84,6 +78,6 @@ public class TestTalonMotors extends Command {
   }
 
   private void cleanUp() {
-    talon.set(ControlMode.PercentOutput, 0.0);
+    talon.set(ControlMode.Current, 0.0);
   }
 }

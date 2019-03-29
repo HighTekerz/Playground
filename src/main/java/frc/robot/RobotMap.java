@@ -24,7 +24,7 @@ import frc.robot.tekerz.Rioduino;
  */
 public class RobotMap {
   public static class Talons {
-    public static TalonSRX testTalonEncoder = new TalonSRX(0);
+    public static TalonSRX testTalonEncoder = new TalonSRX(10);
     public static TalonSRX testTalonIMU = new TalonSRX(21);
   }
 

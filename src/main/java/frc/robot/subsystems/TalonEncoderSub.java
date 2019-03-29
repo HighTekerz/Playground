@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
@@ -23,6 +24,6 @@ public class TalonEncoderSub extends Subsystem {
   }
 
   public void log() {
-    
+    System.out.println(RobotMap.Talons.testTalonEncoder.getSelectedSensorPosition());
   }
 }

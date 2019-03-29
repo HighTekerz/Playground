@@ -20,6 +20,7 @@ import frc.robot.commands.DoNothing;
 import frc.robot.commands.TestMotors;
 import frc.robot.commands.TestSparkMotors;
 import frc.robot.commands.TestTalonMotors;
+import frc.robot.commands.TestTalonMotorsCurrent;
 import frc.robot.commands.sparksub.SparkSubPIDCommand;
 import frc.robot.subsystems.Sensors;
 import frc.robot.subsystems.SparkSub;
@@ -168,8 +169,9 @@ public class Robot extends TimedRobot {
   private void addTestCommands() {
     List<Subsystem> subs = new ArrayList<Subsystem>();
     L.ogSD("Hold B for slow, Y for fast", "Use Left Y axis");
-    SmartDashboard.putData(new TestTalonMotors(RobotMap.Talons.testTalonEncoder, "testTalonEncoder"));
-    SmartDashboard.putData(new TestTalonMotors(RobotMap.Talons.testTalonIMU, "testTalonIMU"));
+    // SmartDashboard.putData(new TestTalonMotors(RobotMap.Talons.testTalonEncoder, "testTalonEncoder"));
+    SmartDashboard.putData(new TestTalonMotorsCurrent(RobotMap.Talons.testTalonEncoder, "testTalonEncoder"));
+    // SmartDashboard.putData(new TestTalonMotors(RobotMap.Talons.testTalonIMU, "testTalonIMU"));
     SmartDashboard.putData(new TestSparkMotors(RobotMap.Sparks.testSpark, "testSpark"));
     SmartDashboard.putData(new TestSparkMotors(RobotMap.Sparks.testSpark2, "testSpark2"));
     SmartDashboard.putData(new SparkSubPIDCommand(50, "PID 50"));
